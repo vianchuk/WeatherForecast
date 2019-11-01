@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  GMXWeatherApp
+
+  Created by Vitalii Ianchuk on 10/31/19.
+  Copyright © 2019 Vitalii Ianchuk. All rights reserved.
+*/
+
+"forecast.navigation.title" = "Weather forecast - %@";
+"forecast.cities.button.title" = "Cities";
+"forecast.loading.description" = "Loading...";
