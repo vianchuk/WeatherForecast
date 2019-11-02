@@ -26,7 +26,10 @@ final class CitiesController : NSObject {
     init(completion: @escaping CitiesCompletion) {
         self.completion = completion
     }
+    
 }
+
+// MARK: - UITableViewDelegate
 
 extension CitiesController : UITableViewDelegate {
 
@@ -47,6 +50,8 @@ extension CitiesController : UITableViewDelegate {
     }
 
 }
+
+// MARK: - UITableViewDataSource
 
 extension CitiesController : UITableViewDataSource {
 

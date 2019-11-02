@@ -25,6 +25,8 @@ struct Weather : Codable {
     let icon: String
 }
 
+
+/// Forecast structure
 struct Forecast : Codable {
     let date : Double
     let main : Main

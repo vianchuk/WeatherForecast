@@ -11,22 +11,33 @@ import UIKit
 
 protocol ForecastControllerProtocol {
 
+    /// Fetch all weather info
+    /// - Parameter completion: completion handler
     func fetchWeatherForecast(completion: @escaping (Result<Any?, Error>) -> Void)
 
+
+    /// Generate forecast view controller for specific day
+    /// - Parameter day: day description
     func dayForecastController(day: Int) -> ForecastDayViewController?
 
+    /// Generate cities view controller
+    /// - Parameter completion: completion handler
     func citiesControllerViewController(completion: @escaping (() -> Void)) -> CitiesTableViewController
 
+    /// Return current city information
     var currentCityInfo: String { get }
 }
 
 final class ForecastController : ForecastControllerProtocol {
 
-    private let dataSource: ForecastDataSourceProtocol
+    // MARK: - Properties
 
+    private let dataSource: ForecastDataSourceProtocol
     private var forecastList: [Forecast] = []
-    private var city: String = "London"
-    private var country: String = "us"
+    private var city: String = "London" // default value
+    private var country: String = "us"  // default value
+
+    // MARK: - Initialization
 
     init(dataSource: ForecastDataSourceProtocol) {
         self.dataSource = dataSource
@@ -57,7 +68,7 @@ final class ForecastController : ForecastControllerProtocol {
                 self?.forecastList = response
                 completion(.success(nil))
             case .failure:
-                print("Fail")
+                break // TODO: - Process failing case
             }
         }
     }

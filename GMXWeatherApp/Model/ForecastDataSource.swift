@@ -8,20 +8,34 @@
 
 import Foundation
 import UIKit
+
+
 protocol ForecastDataSourceProtocol : class {
 
+    /// Request detail weather forecast
+    /// - Parameter city: city description
+    /// - Parameter country: country description
+    /// - Parameter completion: response handler
     func fetchWeatherForecast(city: String,
                               country: String,
                               completion: @escaping (Result<[Forecast], Error>) -> Void)
 
+
+    /// Request special weather image
+    /// - Parameter name: image name
+    /// - Parameter completion: response handler
     func fetchImage(name: String, completion: @escaping (Result<UIImage, Error>) -> Void)
 
 }
 
 final class ForecastDataSource : ForecastDataSourceProtocol {
 
+    // MARK: - Properties
+
     private let forecastAPIClient : ForecastAPIClientProtocol
 
+    // MARK: - Initialization
+    
     init(forecastAPIClient: ForecastAPIClientProtocol) {
         self.forecastAPIClient = forecastAPIClient
     }

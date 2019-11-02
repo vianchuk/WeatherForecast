@@ -93,15 +93,18 @@ final class ForecastViewController : UIViewController {
     private func loadForecastData() {
         configureLoadingViewController(isVisible: true)
         controller.fetchWeatherForecast() { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             switch result {
             case .success:
                 DispatchQueue.main.async {
-                    self?.setupForecastWeatherViews()
-                    self?.configureLoadingViewController(isVisible: false)
+                    self.setupForecastWeatherViews()
+                    self.configureLoadingViewController(isVisible: false)
                 }
             case .failure:
                 // TODO: - Process failing case
-                self?.configureLoadingViewController(isVisible: false)
+                self.configureLoadingViewController(isVisible: false)
             }
         }
     }

@@ -18,11 +18,16 @@
 		FA8A2469236B397D009F3C9C /* CitiesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8A2468236B397D009F3C9C /* CitiesController.swift */; };
 		FA8A246B236C2E4B009F3C9C /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8A246A236C2E4B009F3C9C /* LoadingViewController.swift */; };
 		FA8A246D236C2F6D009F3C9C /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8A246C236C2F6D009F3C9C /* LoadingViewController.xib */; };
+		FA9A8FF9236D797A00008C3E /* ForecastDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A8FF8236D797A00008C3E /* ForecastDataSourceTests.swift */; };
+		FA9A8FFC236D7ABA00008C3E /* MockGMXAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A8FFB236D7ABA00008C3E /* MockGMXAPIClient.swift */; };
+		FA9A8FFE236D828200008C3E /* MockForecastAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A8FFD236D828200008C3E /* MockForecastAPIClient.swift */; };
+		FA9A9000236DD58200008C3E /* MockForecastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A8FFF236DD58200008C3E /* MockForecastController.swift */; };
+		FA9A9002236DD73900008C3E /* ForecastViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A9001236DD73900008C3E /* ForecastViewControllerTests.swift */; };
 		FAB2959823696E7C0011CA3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2959723696E7C0011CA3D /* AppDelegate.swift */; };
 		FAB2959E23696E7D0011CA3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB2959D23696E7D0011CA3D /* Assets.xcassets */; };
 		FAB295A123696E7D0011CA3D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB295A023696E7D0011CA3D /* Preview Assets.xcassets */; };
 		FAB295A423696E7D0011CA3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB295A223696E7D0011CA3D /* LaunchScreen.storyboard */; };
-		FAB295AF23696E7D0011CA3D /* GMXWeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB295AE23696E7D0011CA3D /* GMXWeatherAppTests.swift */; };
+		FAB295AF23696E7D0011CA3D /* ForecastAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB295AE23696E7D0011CA3D /* ForecastAPIClientTests.swift */; };
 		FAB295BD2369704A0011CA3D /* GMXAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB295BC2369704A0011CA3D /* GMXAPIClient.swift */; };
 		FAB295BF236971670011CA3D /* GMXClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB295BE236971670011CA3D /* GMXClientConfiguration.swift */; };
 		FAB295C2236980C70011CA3D /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB295C1236980C70011CA3D /* Forecast.swift */; };
@@ -55,6 +60,11 @@
 		FA8A2468236B397D009F3C9C /* CitiesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesController.swift; sourceTree = "<group>"; };
 		FA8A246A236C2E4B009F3C9C /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		FA8A246C236C2F6D009F3C9C /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
+		FA9A8FF8236D797A00008C3E /* ForecastDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDataSourceTests.swift; sourceTree = "<group>"; };
+		FA9A8FFB236D7ABA00008C3E /* MockGMXAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGMXAPIClient.swift; sourceTree = "<group>"; };
+		FA9A8FFD236D828200008C3E /* MockForecastAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockForecastAPIClient.swift; sourceTree = "<group>"; };
+		FA9A8FFF236DD58200008C3E /* MockForecastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockForecastController.swift; sourceTree = "<group>"; };
+		FA9A9001236DD73900008C3E /* ForecastViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewControllerTests.swift; sourceTree = "<group>"; };
 		FAB2959423696E7C0011CA3D /* GMXWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMXWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB2959723696E7C0011CA3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB2959D23696E7D0011CA3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,7 +72,7 @@
 		FAB295A323696E7D0011CA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAB295A523696E7D0011CA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB295AA23696E7D0011CA3D /* GMXWeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GMXWeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAB295AE23696E7D0011CA3D /* GMXWeatherAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMXWeatherAppTests.swift; sourceTree = "<group>"; };
+		FAB295AE23696E7D0011CA3D /* ForecastAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastAPIClientTests.swift; sourceTree = "<group>"; };
 		FAB295B023696E7D0011CA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB295BC2369704A0011CA3D /* GMXAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMXAPIClient.swift; sourceTree = "<group>"; };
 		FAB295BE236971670011CA3D /* GMXClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMXClientConfiguration.swift; sourceTree = "<group>"; };
@@ -99,6 +109,16 @@
 				FA8A245B236AF0FC009F3C9C /* ForecastDayCollectionViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FA9A8FFA236D7AA800008C3E /* MockObjects */ = {
+			isa = PBXGroup;
+			children = (
+				FA9A8FFB236D7ABA00008C3E /* MockGMXAPIClient.swift */,
+				FA9A8FFD236D828200008C3E /* MockForecastAPIClient.swift */,
+				FA9A8FFF236DD58200008C3E /* MockForecastController.swift */,
+			);
+			path = MockObjects;
 			sourceTree = "<group>";
 		};
 		FAB2958B23696E7C0011CA3D = {
@@ -141,7 +161,10 @@
 		FAB295AD23696E7D0011CA3D /* GMXWeatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				FAB295AE23696E7D0011CA3D /* GMXWeatherAppTests.swift */,
+				FA9A8FFA236D7AA800008C3E /* MockObjects */,
+				FAB295AE23696E7D0011CA3D /* ForecastAPIClientTests.swift */,
+				FA9A8FF8236D797A00008C3E /* ForecastDataSourceTests.swift */,
+				FA9A9001236DD73900008C3E /* ForecastViewControllerTests.swift */,
 				FAB295B023696E7D0011CA3D /* Info.plist */,
 			);
 			path = GMXWeatherAppTests;
@@ -342,7 +365,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAB295AF23696E7D0011CA3D /* GMXWeatherAppTests.swift in Sources */,
+				FA9A8FFE236D828200008C3E /* MockForecastAPIClient.swift in Sources */,
+				FA9A9002236DD73900008C3E /* ForecastViewControllerTests.swift in Sources */,
+				FA9A8FF9236D797A00008C3E /* ForecastDataSourceTests.swift in Sources */,
+				FA9A9000236DD58200008C3E /* MockForecastController.swift in Sources */,
+				FAB295AF23696E7D0011CA3D /* ForecastAPIClientTests.swift in Sources */,
+				FA9A8FFC236D7ABA00008C3E /* MockGMXAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

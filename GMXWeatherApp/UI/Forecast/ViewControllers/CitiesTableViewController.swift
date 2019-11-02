@@ -15,6 +15,8 @@ final class CitiesTableViewController : UITableViewController {
 
     private let controller: CitiesController
 
+    // MARK: - Initializtion
+
     init(controller: CitiesController) {
         self.controller = controller
 

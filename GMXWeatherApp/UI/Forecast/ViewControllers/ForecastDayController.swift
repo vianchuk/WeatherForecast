@@ -26,6 +26,7 @@ final class ForecastDayController : NSObject, ForecastDayControllerProtocol {
 
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(abbreviation: "UTC")!
         formatter.setLocalizedDateFormatFromTemplate("HH:mm")
         return formatter
     }()
