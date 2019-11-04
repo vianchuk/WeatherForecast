@@ -13,5 +13,7 @@ Weather example app GMX
   - Initial UI tests
   
  
+# Flow
 
+![](flow.gif)
 
