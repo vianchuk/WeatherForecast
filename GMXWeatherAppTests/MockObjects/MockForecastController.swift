@@ -10,10 +10,9 @@ import Foundation
 @testable import GMXWeatherApp
 
 final class MockForecastController : ForecastControllerProtocol {
-
     var stubFetchWeatherForecastWasCalled = false
-    var stubFetchWeatherForecastCompletion: (Result<Any?, Error>) = .failure(NSError())
-    func fetchWeatherForecast(completion: @escaping (Result<Any?, Error>) -> Void) {
+    var stubFetchWeatherForecastCompletion: (Result<Any?, Error>) = .failure(ForecastError.invalidRemoteData)
+    func fetchWeatherForecast(useLocalStorage: Bool, completion: @escaping (Result<Any?, Error>) -> Void) {
         stubFetchWeatherForecastWasCalled = true
         completion(stubFetchWeatherForecastCompletion)
     }
@@ -30,7 +29,7 @@ final class MockForecastController : ForecastControllerProtocol {
         let controller = CitiesTableViewController(controller: CitiesController(completion: {_,_ in }))
         return controller
     }
-
+    
     var currentCityInfo: String = "testablecity"
 
     

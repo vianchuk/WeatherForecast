@@ -12,8 +12,9 @@ import UIKit
 protocol ForecastControllerProtocol {
 
     /// Fetch all weather info
+    /// - Parameter useLocalStorage: use local data
     /// - Parameter completion: completion handler
-    func fetchWeatherForecast(completion: @escaping (Result<Any?, Error>) -> Void)
+    func fetchWeatherForecast(useLocalStorage: Bool, completion: @escaping (Result<Any?, Error>) -> Void)
 
 
     /// Generate forecast view controller for specific day
@@ -61,22 +62,31 @@ final class ForecastController : ForecastControllerProtocol {
         return citiesViewController
     }
 
-    func fetchWeatherForecast(completion:  @escaping (Result<Any?, Error>) -> Void) {
-        dataSource.fetchWeatherForecast(city: city, country: country) { [weak self] result in
+    func fetchWeatherForecast(useLocalStorage: Bool, completion:  @escaping (Result<Any?, Error>) -> Void) {
+        dataSource.fetchWeatherForecast(fromLocalFile: useLocalStorage, city: city, country: country) { [weak self] result in
             switch result {
             case let .success(response):
                 self?.forecastList = response
                 completion(.success(nil))
-            case .failure:
-                break // TODO: - Process failing case
+            case .failure(let error):
+                completion(.failure(error))
+                break
             }
         }
     }
 
     func dayForecastController(day: Int) -> ForecastDayViewController? {
+
+        // Allow load and filter date not only from current day start. (ex. when we use old forecast from local file)
+        // with remote loading 'startDate' always will be 'today'
+
+        guard let startTimeInterval = forecastList.first?.date else {
+            return nil
+        }
+        let startDate = Date(timeIntervalSince1970: startTimeInterval)
         let calendar = Calendar.current
         let currentDayCalendarComponent = DateComponents(day: day)
-        guard let date = calendar.date(byAdding: currentDayCalendarComponent, to: Date()) else {
+        guard let date = calendar.date(byAdding: currentDayCalendarComponent, to: startDate) else {
             return nil
         }
         let dateDayStart = calendar.startOfDay(for: date)

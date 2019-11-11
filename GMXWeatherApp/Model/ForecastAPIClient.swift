@@ -9,17 +9,20 @@
 import Foundation
 import UIKit
 
+typealias ForecastLoadingResult = Result<[Forecast], Error>
+typealias ForecastImageLoadingResult = Result<UIImage, Error>
+
 protocol ForecastAPIClientProtocol : class {
 
     /// Request weather forecast for detailed parameters
     /// - Parameter parameters: forecast description parameters
     /// - Parameter completion: completion handlder
-    func fetchForecast(parameters: URLParameters,  completion: @escaping (Result<[Forecast], Error>) -> Void)
+    func fetchForecast(parameters: URLParameters,  completion: @escaping (ForecastLoadingResult) -> Void)
 
     /// Request forecast day image
     /// - Parameter name: image name
     /// - Parameter completion: requeest result
-    func imageFor(name: String,  completion: @escaping (Result<UIImage, Error>) -> Void)
+    func imageFor(name: String,  completion: @escaping (ForecastImageLoadingResult) -> Void)
 }
 
 final class  ForecastAPIClient : ForecastAPIClientProtocol {
@@ -36,7 +39,7 @@ final class  ForecastAPIClient : ForecastAPIClientProtocol {
 
     // MARK: - ForecastAPIClientProtocol
 
-    func fetchForecast(parameters: URLParameters, completion: @escaping (Result<[Forecast], Error>) -> Void) {
+    func fetchForecast(parameters: URLParameters, completion: @escaping (ForecastLoadingResult) -> Void) {
         let route = GMXEndPoint(httpMethod: .get, path: "/data/2.5/forecast", parameters: parameters)
         client.apiRequest(route) { data, response, error in
             if let error = error {
@@ -45,7 +48,7 @@ final class  ForecastAPIClient : ForecastAPIClientProtocol {
             }
 
             guard let responseData = data else {
-                completion(.failure(NSError())) // TODO: - Error description needed
+                completion(.failure(ForecastError.invalidRemoteData))
                 return
             }
             do {
@@ -57,7 +60,7 @@ final class  ForecastAPIClient : ForecastAPIClientProtocol {
         }
     }
 
-    func imageFor(name: String,  completion: @escaping (Result<UIImage, Error>) -> Void) {
+    func imageFor(name: String,  completion: @escaping (ForecastImageLoadingResult) -> Void) {
         let route = GMXEndPoint(httpMethod: .get, path: String(format: "/img/wn/%@@2x.png", name) , parameters: [:])
         client.serviceRequest(route) { data, response, error in
             if let error = error {
@@ -66,12 +69,12 @@ final class  ForecastAPIClient : ForecastAPIClientProtocol {
             }
 
             guard let responseData = data else {
-                completion(.failure(NSError())) // TODO: - Error description needed
+                completion(.failure(ForecastError.invalidImageResponse))
                 return
             }
 
             guard let image = UIImage(data: responseData) else {
-                completion(.failure(NSError())) // TODO: - Error description needed
+                completion(.failure(ForecastError.invalidImageResponse))
                 return
             }
             completion(.success(image))

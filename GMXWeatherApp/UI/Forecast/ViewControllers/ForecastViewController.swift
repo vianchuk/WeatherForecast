@@ -14,11 +14,16 @@ final class ForecastViewController : UIViewController {
     // MARK: - Properties
 
     private let dayForecastViewHeight: CGFloat = 130
+    private let dataSettingsViewHeight: CGFloat = 80
+
     private let controller: ForecastControllerProtocol
     private let scrollView: UIScrollView
+    private let dataSettingsView: ForecastSwitchDataView
 
     private var loadingViewController: LoadingViewController
     private var forecastChildViewControllers: [UIViewController] = []
+    private var localModeEnabled: Bool = false
+
 
     // MARK: - Initialization
 
@@ -28,6 +33,7 @@ final class ForecastViewController : UIViewController {
 
         self.loadingViewController = LoadingViewController()
         self.loadingViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.dataSettingsView = ForecastSwitchDataView.fromNib()
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,10 +59,24 @@ final class ForecastViewController : UIViewController {
             scrollView.widthAnchor.constraint(equalToConstant: view.bounds.width)
         ])
 
+        setupSettingsView()
         loadForecastData()
     }
 
     // MARK: - Private helpers
+
+    private func setupSettingsView() {
+        dataSettingsView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(dataSettingsView)
+        NSLayoutConstraint.activate([
+            dataSettingsView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            dataSettingsView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            dataSettingsView.heightAnchor.constraint(equalToConstant: dataSettingsViewHeight),
+            dataSettingsView.widthAnchor.constraint(equalToConstant: view.bounds.width)
+        ])
+        
+        dataSettingsView.delegate = self
+    }
 
     private func setupNavigationBar() {
         let button = UIBarButtonItem(title: NSLocalizedString("forecast.cities.button.title", comment: "title"), style: .plain, target: self, action: #selector(showCitiesAction(_:)))
@@ -92,7 +112,7 @@ final class ForecastViewController : UIViewController {
 
     private func loadForecastData() {
         configureLoadingViewController(isVisible: true)
-        controller.fetchWeatherForecast() { [weak self] (result) in
+        controller.fetchWeatherForecast(useLocalStorage: localModeEnabled) { [weak self] (result) in
             guard let self = self else {
                 return
             }
@@ -102,15 +122,17 @@ final class ForecastViewController : UIViewController {
                     self.setupForecastWeatherViews()
                     self.configureLoadingViewController(isVisible: false)
                 }
-            case .failure:
-                // TODO: - Process failing case
-                self.configureLoadingViewController(isVisible: false)
+            case let .failure(error):
+                DispatchQueue.main.async {
+                    self.configureLoadingViewController(isVisible: false)
+                    self.handleError(error: error)
+                }
             }
         }
     }
 
     private func setupForecastWeatherViews() {
-        var currentTopAnchor = scrollView.topAnchor
+        var currentTopAnchor = dataSettingsView.bottomAnchor
 
         navigationItem.title = String(format: NSLocalizedString("forecast.navigation.title", comment: ""), controller.currentCityInfo)
         for day in 0...4 {
@@ -144,6 +166,39 @@ final class ForecastViewController : UIViewController {
         }
 
         forecastChildViewControllers.removeAll()
+    }
+
+    private func handleError(error: Error) {
+        var title: String {
+            switch error {
+            case ForecastError.invalidLocalPath:
+                return NSLocalizedString("forecast.error.ivalid.local.file.path", comment: "")
+            case ForecastError.invalidRemoteData:
+                return NSLocalizedString("forecast.error.fail.remote.parse", comment: "")
+            default:
+                return ""
+            }
+        }
+
+        let allert = UIAlertController(title: NSLocalizedString("forecast.alert.error.title", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
+        allert.addAction(UIAlertAction(title: NSLocalizedString("forecast.alert.button.text", comment: ""), style: .cancel, handler: nil))
+        present(allert, animated: true, completion: nil)
+    }
+
+}
+
+extension ForecastViewController : ForecastSwitchDataViewDelegate {
+
+    func switchControlDidChangeWithValue(useLocal: Bool) {
+        localModeEnabled = useLocal
+        clearView()
+        loadForecastData()
+    }
+
+    func showSwitchInfo() {
+        let allert = UIAlertController(title: "", message: NSLocalizedString("forecast.alert.inforamation", comment: ""), preferredStyle: .alert)
+        allert.addAction(UIAlertAction(title: NSLocalizedString("forecast.alert.button.text", comment: ""), style: .cancel, handler: nil))
+        present(allert, animated: true, completion: nil)
     }
 
 }

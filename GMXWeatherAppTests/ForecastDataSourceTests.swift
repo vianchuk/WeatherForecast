@@ -13,6 +13,7 @@ import XCTest
 final class ForecastDataSourceTests : XCTestCase {
 
     var forecastAPIClient: MockForecastAPIClient!
+    var forecastDataStorage: MockForecastDataStorage!
     var forecastDataSource: ForecastDataSource!
 
     lazy var mockForecast: Forecast = {
@@ -28,36 +29,52 @@ final class ForecastDataSourceTests : XCTestCase {
         super.setUp()
 
         forecastAPIClient = MockForecastAPIClient()
-        forecastDataSource = ForecastDataSource(forecastAPIClient: forecastAPIClient)
+        forecastDataStorage = MockForecastDataStorage()
+        forecastDataSource = ForecastDataSource(forecastAPIClient: forecastAPIClient, forecastDataStorage: forecastDataStorage)
     }
 
     override func tearDown() {
         forecastAPIClient = nil
         forecastDataSource = nil
+        forecastDataStorage = nil
 
         super.tearDown()
     }
 
     func test_fetchWeatherForecastSuccess() {
         forecastAPIClient.stubFetchForecastCompletion = .success([mockForecast])
-        forecastDataSource.fetchWeatherForecast(city: "test", country: "test") { result in
+        forecastDataSource.fetchWeatherForecast(fromLocalFile: false, city: "test", country: "test") { result in
             if case .failure = result {
                 XCTAssertThrowsError("expected success result")
             }
         }
 
         XCTAssertTrue(forecastAPIClient.stubFetchForecastWasCalled)
+        XCTAssertFalse(forecastDataStorage.stubFetchForecastFromLocalFileWasCalled)
     }
 
     func test_fetchWeatherForecastFail() {
-           forecastDataSource.fetchWeatherForecast(city: "test", country: "test") { result in
-               if case .success = result {
-                   XCTAssertThrowsError("expected fail result")
-               }
-           }
+        forecastDataSource.fetchWeatherForecast(fromLocalFile: false, city: "test", country: "test") { result in
+            if case .success = result {
+                XCTAssertThrowsError("expected fail result")
+            }
+        }
 
-           XCTAssertTrue(forecastAPIClient.stubFetchForecastWasCalled)
-       }
+        XCTAssertTrue(forecastAPIClient.stubFetchForecastWasCalled)
+        XCTAssertFalse(forecastDataStorage.stubFetchForecastFromLocalFileWasCalled)
+    }
+
+    func test_fetchWeatherForecastFromLocalFileSuccess() {
+        forecastDataStorage.stubFetchForecastFromLocalFileCompletion = .success([mockForecast])
+        forecastDataSource.fetchWeatherForecast(fromLocalFile: true, city: "test", country: "test") { result in
+            if case .failure = result {
+                XCTAssertThrowsError("expected success result")
+            }
+        }
+
+        XCTAssertFalse(forecastAPIClient.stubFetchForecastWasCalled)
+        XCTAssertTrue(forecastDataStorage.stubFetchForecastFromLocalFileWasCalled)
+    }
 
     func test_fetchImageFailure() {
         forecastDataSource.fetchImage(name: "") { result in

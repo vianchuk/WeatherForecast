@@ -9,3 +9,11 @@
 "forecast.navigation.title" = "Weather forecast - %@";
 "forecast.cities.button.title" = "Cities";
 "forecast.loading.description" = "Loading...";
+"forecast.switch.local.text" = "Local data";
+"forecast.switch.remote.text" = "Remote data";
+"forecast.alert.error.title" = "Error occurred..";
+"forecast.alert.button.text" = "Close";
+"forecast.alert.inforamation" = "Local data loading from 'localForecast' json file. You can modify this file with different values";
+"forecast.error.ivalid.local.file.path" = "Local .json not found";
+"forecast.error.fail.remote.parse" = "Imvalid response format";
+"forecast.error.invalid" = "Invalid error";

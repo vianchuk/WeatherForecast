@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA73218E2376ACD800BD8D45 /* localForecast.json in Resources */ = {isa = PBXBuildFile; fileRef = FA73218D2376ACD800BD8D45 /* localForecast.json */; };
+		FA7321902376B6F100BD8D45 /* MockForecastDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73218F2376B6F100BD8D45 /* MockForecastDataStorage.swift */; };
 		FA8A24512369CB93009F3C9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8A24502369CB93009F3C9C /* SceneDelegate.swift */; };
 		FA8A2455236AEB4E009F3C9C /* ForecastDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8A2454236AEB4E009F3C9C /* ForecastDayViewController.swift */; };
 		FA8A2457236AECE6009F3C9C /* ForecastDayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8A2456236AECE6009F3C9C /* ForecastDayViewController.xib */; };
@@ -36,6 +38,9 @@
 		FAB295C823698A360011CA3D /* GMXEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB295C723698A360011CA3D /* GMXEndPoint.swift */; };
 		FAB295CC2369BE150011CA3D /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB295CB2369BE150011CA3D /* ForecastViewController.swift */; };
 		FAB295D12369BEB40011CA3D /* ForecastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB295D02369BEB40011CA3D /* ForecastController.swift */; };
+		FAC46DF32372B5BC008FC482 /* ForecastSwitchDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC46DF22372B5BC008FC482 /* ForecastSwitchDataView.swift */; };
+		FAC46DF52372B5C9008FC482 /* ForecastSwitchDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC46DF42372B5C9008FC482 /* ForecastSwitchDataView.xib */; };
+		FAC46DF72372C04C008FC482 /* ForecastDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC46DF62372C04C008FC482 /* ForecastDataStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA73218D2376ACD800BD8D45 /* localForecast.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = localForecast.json; sourceTree = "<group>"; };
+		FA73218F2376B6F100BD8D45 /* MockForecastDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockForecastDataStorage.swift; sourceTree = "<group>"; };
 		FA8A24502369CB93009F3C9C /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FA8A2454236AEB4E009F3C9C /* ForecastDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDayViewController.swift; sourceTree = "<group>"; };
 		FA8A2456236AECE6009F3C9C /* ForecastDayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastDayViewController.xib; sourceTree = "<group>"; };
@@ -82,6 +89,9 @@
 		FAB295C723698A360011CA3D /* GMXEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMXEndPoint.swift; sourceTree = "<group>"; };
 		FAB295CB2369BE150011CA3D /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		FAB295D02369BEB40011CA3D /* ForecastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastController.swift; sourceTree = "<group>"; };
+		FAC46DF22372B5BC008FC482 /* ForecastSwitchDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastSwitchDataView.swift; sourceTree = "<group>"; };
+		FAC46DF42372B5C9008FC482 /* ForecastSwitchDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastSwitchDataView.xib; sourceTree = "<group>"; };
+		FAC46DF62372C04C008FC482 /* ForecastDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDataStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +115,8 @@
 		FA8A2458236AEEA5009F3C9C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FAC46DF22372B5BC008FC482 /* ForecastSwitchDataView.swift */,
+				FAC46DF42372B5C9008FC482 /* ForecastSwitchDataView.xib */,
 				FA8A2459236AEEC4009F3C9C /* ForecastDayCollectionViewCell.swift */,
 				FA8A245B236AF0FC009F3C9C /* ForecastDayCollectionViewCell.xib */,
 			);
@@ -116,6 +128,7 @@
 			children = (
 				FA9A8FFB236D7ABA00008C3E /* MockGMXAPIClient.swift */,
 				FA9A8FFD236D828200008C3E /* MockForecastAPIClient.swift */,
+				FA73218F2376B6F100BD8D45 /* MockForecastDataStorage.swift */,
 				FA9A8FFF236DD58200008C3E /* MockForecastController.swift */,
 			);
 			path = MockObjects;
@@ -179,6 +192,7 @@
 				FAB295A223696E7D0011CA3D /* LaunchScreen.storyboard */,
 				FAB295A523696E7D0011CA3D /* Info.plist */,
 				FA8A2464236B31DD009F3C9C /* Localizable.strings */,
+				FA73218D2376ACD800BD8D45 /* localForecast.json */,
 				FAB2959F23696E7D0011CA3D /* Preview Content */,
 			);
 			path = Application;
@@ -200,6 +214,7 @@
 				FAB295C1236980C70011CA3D /* Forecast.swift */,
 				FAB295C3236983F90011CA3D /* ForecastDataSource.swift */,
 				FAB295C5236986F90011CA3D /* ForecastAPIClient.swift */,
+				FAC46DF62372C04C008FC482 /* ForecastDataStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,12 +334,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA8A246D236C2F6D009F3C9C /* LoadingViewController.xib in Resources */,
+				FAC46DF52372B5C9008FC482 /* ForecastSwitchDataView.xib in Resources */,
 				FA8A245C236AF0FC009F3C9C /* ForecastDayCollectionViewCell.xib in Resources */,
 				FA8A2465236B31DD009F3C9C /* Localizable.strings in Resources */,
 				FAB295A423696E7D0011CA3D /* LaunchScreen.storyboard in Resources */,
 				FAB295A123696E7D0011CA3D /* Preview Assets.xcassets in Resources */,
 				FA8A2457236AECE6009F3C9C /* ForecastDayViewController.xib in Resources */,
 				FAB2959E23696E7D0011CA3D /* Assets.xcassets in Resources */,
+				FA73218E2376ACD800BD8D45 /* localForecast.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,8 +369,10 @@
 				FA8A2455236AEB4E009F3C9C /* ForecastDayViewController.swift in Sources */,
 				FAB295D12369BEB40011CA3D /* ForecastController.swift in Sources */,
 				FA8A2469236B397D009F3C9C /* CitiesController.swift in Sources */,
+				FAC46DF72372C04C008FC482 /* ForecastDataStorage.swift in Sources */,
 				FAB295C4236983F90011CA3D /* ForecastDataSource.swift in Sources */,
 				FAB295C2236980C70011CA3D /* Forecast.swift in Sources */,
+				FAC46DF32372B5BC008FC482 /* ForecastSwitchDataView.swift in Sources */,
 				FA8A24512369CB93009F3C9C /* SceneDelegate.swift in Sources */,
 				FAB295CC2369BE150011CA3D /* ForecastViewController.swift in Sources */,
 				FAB295C823698A360011CA3D /* GMXEndPoint.swift in Sources */,
@@ -366,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9A8FFE236D828200008C3E /* MockForecastAPIClient.swift in Sources */,
+				FA7321902376B6F100BD8D45 /* MockForecastDataStorage.swift in Sources */,
 				FA9A9002236DD73900008C3E /* ForecastViewControllerTests.swift in Sources */,
 				FA9A8FF9236D797A00008C3E /* ForecastDataSourceTests.swift in Sources */,
 				FA9A9000236DD58200008C3E /* MockForecastController.swift in Sources */,

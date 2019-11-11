@@ -13,15 +13,15 @@ import UIKit
 final class MockForecastAPIClient: ForecastAPIClientProtocol {
 
     var stubFetchForecastWasCalled = false
-    var stubFetchForecastCompletion: (Result<[Forecast], Error>) = .failure(NSError())
-    func fetchForecast(parameters: URLParameters, completion: @escaping (Result<[Forecast], Error>) -> Void) {
+    var stubFetchForecastCompletion: (ForecastLoadingResult) = .failure(NSError())
+    func fetchForecast(parameters: URLParameters, completion: @escaping (ForecastLoadingResult) -> Void) {
         stubFetchForecastWasCalled = true
         completion(stubFetchForecastCompletion)
     }
 
     var stubImageForWasCalled = false
-    var stubImageFor: (Result<UIImage, Error>) = .failure(NSError())
-    func imageFor(name: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    var stubImageFor: (ForecastImageLoadingResult) = .failure(NSError())
+    func imageFor(name: String, completion: @escaping (ForecastImageLoadingResult) -> Void) {
         stubImageForWasCalled = true
     }
 

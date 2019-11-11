@@ -25,7 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             let gmxAPI = GMXAPIClient(configuration: GMXClientConfiguration())
             let forecastAPI = ForecastAPIClient(client: gmxAPI)
-            let forecastDataSource = ForecastDataSource(forecastAPIClient: forecastAPI)
+            let forecastDataStorage = ForecastDataStorage()
+            let forecastDataSource = ForecastDataSource(forecastAPIClient: forecastAPI, forecastDataStorage: forecastDataStorage)
             let forecastController = ForecastController(dataSource: forecastDataSource)
             let forecastViewController = ForecastViewController(controller: forecastController)
             let navigationViewController = UINavigationController(rootViewController: forecastViewController)

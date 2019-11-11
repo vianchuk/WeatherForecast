@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum ForecastError : Error {
+    case invalidLocalPath
+    case invalidRemoteData
+    case invalidImageResponse
+}
+
 struct City : Codable {
     let name: String
     let country: String
