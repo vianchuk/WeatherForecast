@@ -8,7 +8,6 @@ Weather example app GMX
 
 # Notes
  Next steps:
-  - Data loading from file
   - More unit test
   - Initial UI tests
   
@@ -16,4 +15,6 @@ Weather example app GMX
 # Flow
 
 ![](flow.gif)
+![](flow2.gif)
+
 
